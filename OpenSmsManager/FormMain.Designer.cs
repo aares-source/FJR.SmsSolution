@@ -31,6 +31,7 @@ namespace OpenSmsManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.serialPortList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -83,7 +84,7 @@ namespace OpenSmsManager
             this.serialPortList.Name = "serialPortList";
             this.serialPortList.Size = new System.Drawing.Size(138, 21);
             this.serialPortList.TabIndex = 1;
-            this.serialPortList.SelectedIndexChanged += new System.EventHandler(this.serialPortList_SelectedIndexChanged);
+            this.serialPortList.SelectedIndexChanged += new System.EventHandler(this.SerialPortList_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -108,7 +109,7 @@ namespace OpenSmsManager
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(598, 276);
+            this.groupBox2.Size = new System.Drawing.Size(598, 213);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Phone Sms Messages";
@@ -117,14 +118,14 @@ namespace OpenSmsManager
             // 
             this.existingMessageDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.existingMessageDelete.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.existingMessageDelete.Location = new System.Drawing.Point(497, 241);
+            this.existingMessageDelete.Location = new System.Drawing.Point(497, 178);
             this.existingMessageDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.existingMessageDelete.Name = "existingMessageDelete";
             this.existingMessageDelete.Size = new System.Drawing.Size(88, 27);
             this.existingMessageDelete.TabIndex = 5;
             this.existingMessageDelete.Text = "Delete";
             this.existingMessageDelete.UseVisualStyleBackColor = true;
-            this.existingMessageDelete.Click += new System.EventHandler(this.existingMessageDelete_Click);
+            this.existingMessageDelete.Click += new System.EventHandler(this.ExistingMessageDelete_Click);
             // 
             // messageList
             // 
@@ -145,12 +146,12 @@ namespace OpenSmsManager
             this.messageList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.messageList.MultiSelect = false;
             this.messageList.Name = "messageList";
-            this.messageList.Size = new System.Drawing.Size(573, 211);
+            this.messageList.Size = new System.Drawing.Size(573, 148);
             this.messageList.Sorting = System.Windows.Forms.SortOrder.Descending;
             this.messageList.TabIndex = 0;
             this.messageList.UseCompatibleStateImageBehavior = false;
             this.messageList.View = System.Windows.Forms.View.Details;
-            this.messageList.SelectedIndexChanged += new System.EventHandler(this.messageList_SelectedIndexChanged);
+            this.messageList.SelectedIndexChanged += new System.EventHandler(this.MessageList_SelectedIndexChanged);
             // 
             // Received
             // 
@@ -178,11 +179,11 @@ namespace OpenSmsManager
             this.groupBox3.Controls.Add(this.newMessageTo);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(15, 372);
+            this.groupBox3.Location = new System.Drawing.Point(15, 309);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox3.Size = new System.Drawing.Size(597, 230);
+            this.groupBox3.Size = new System.Drawing.Size(597, 240);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Send SMS using Phone";
@@ -192,26 +193,26 @@ namespace OpenSmsManager
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(9, 179);
+            this.label4.Location = new System.Drawing.Point(9, 193);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(574, 47);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Please note: If a message is longer than 160 characters it will be split and sent" +
-    " as multiple messages, and combined by the recipient.";
+            this.label4.Text = "Please note: If a message is longer than 160 characters it will be splited and se" +
+    "nt as multiple messages, and combined by the recipient.";
             // 
             // newMessageSend
             // 
             this.newMessageSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.newMessageSend.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.newMessageSend.Location = new System.Drawing.Point(496, 149);
+            this.newMessageSend.Location = new System.Drawing.Point(496, 159);
             this.newMessageSend.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.newMessageSend.Name = "newMessageSend";
             this.newMessageSend.Size = new System.Drawing.Size(88, 27);
             this.newMessageSend.TabIndex = 4;
             this.newMessageSend.Text = "Send";
             this.newMessageSend.UseVisualStyleBackColor = true;
-            this.newMessageSend.Click += new System.EventHandler(this.newMessageSend_Click);
+            this.newMessageSend.Click += new System.EventHandler(this.NewMessageSend_Click);
             // 
             // newMessageText
             // 
@@ -223,7 +224,7 @@ namespace OpenSmsManager
             this.newMessageText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.newMessageText.Multiline = true;
             this.newMessageText.Name = "newMessageText";
-            this.newMessageText.Size = new System.Drawing.Size(570, 76);
+            this.newMessageText.Size = new System.Drawing.Size(570, 86);
             this.newMessageText.TabIndex = 3;
             // 
             // label3
@@ -285,17 +286,18 @@ namespace OpenSmsManager
             // progressTimer
             // 
             this.progressTimer.Interval = 3000;
-            this.progressTimer.Tick += new System.EventHandler(this.progressTimer_Tick);
+            this.progressTimer.Tick += new System.EventHandler(this.ProgressTimer_Tick);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 687);
+            this.ClientSize = new System.Drawing.Size(626, 624);
             this.Controls.Add(this.progress);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(633, 663);
             this.Name = "FormMain";

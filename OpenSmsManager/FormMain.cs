@@ -44,13 +44,14 @@ namespace OpenSmsManager
             }*/
         }
 
-        private void serialPortList_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void SerialPortList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             messageList.Items.Clear();
 
             try
             {
                 ProgressShow("Opening Phone...");
+
                 using (PhoneClient phoneClient = new PhoneClient(serialPortList.Text))
                 {
                     ProgressShow("Listing messages...");
@@ -80,7 +81,7 @@ namespace OpenSmsManager
             }
         }
 
-        private void newMessageSend_Click(object sender, EventArgs e)
+        private void NewMessageSend_Click(object sender, EventArgs e)
         {
             try
             {
@@ -105,7 +106,7 @@ namespace OpenSmsManager
             }
         }
 
-        private void messageList_SelectedIndexChanged(object sender, EventArgs e)
+        private void MessageList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (messageList.SelectedItems.Count > 0)
             {
@@ -115,7 +116,7 @@ namespace OpenSmsManager
             }
         }
 
-        private void existingMessageDelete_Click(object sender, EventArgs e)
+        private void ExistingMessageDelete_Click(object sender, EventArgs e)
         {
             if (messageList.SelectedItems.Count > 0)
             {
@@ -135,7 +136,7 @@ namespace OpenSmsManager
                 }
 
                 // reindex messages
-                serialPortList_SelectedIndexChanged(null, null);
+                SerialPortList_SelectedIndexChanged(null, null);
             }
         }
 
@@ -148,7 +149,7 @@ namespace OpenSmsManager
             progressTimer.Enabled = true;
         }
 
-        private void progressTimer_Tick(object sender, EventArgs e)
+        private void ProgressTimer_Tick(object sender, EventArgs e)
         {
             progress.Visible = false;
             progressTimer.Enabled = false;

@@ -1,0 +1,25 @@
+SMS Logo:
+
+https://commons.wikimedia.org/wiki/File:Antu_sms_protocol.svg
+Fabián Alexis, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+
+Summary
+Description	
+Antü Plasma Suite
+
+Elegant Alternative Suite for Plasma 5.
+
+Original parts, changes, mixes, re-mixes and re-designs by Fabián Alexis <fabian.alexis@openmailbox.org> <github.com/fabianalexisinostroza/Antu> <pinguinosyuncafe.wordpress.com>
+
+Some elementes of icon theme are part of Breeze icon Theme. <github.com/NitruxSA/breeze-icon-theme>
+
+The Plasma theme was created using the base of Midna-dark Theme. <github.com/KaOSx/midna> from Mcder3 (creator of Maia and Hellium too) and the Caledonia plasma theme by Malcer
+
+Antü Plasma-KDE Theme are licensed under the CREATIVE COMMONS BY-SA 3.0.
+
+All Antü suite components are licensed Creative Commons or compatible (look at the licensing of external components)
+Date	1 April 2016
+Source	https://github.com/fabianalexisinostroza/Antu
+Author	Fabián Alexis
+Licensing
+This file is from the Antü Plasma Suite, which released it explicitly under the Creative Commons Attribution-Share Alike 3.0 Unported license (see here). Please note: These icons may include elements and derivatives (such as logos from other organizations) which are not owned by the developers of Antü Plasma Suite, and may or may not be licensed under a compatible license.

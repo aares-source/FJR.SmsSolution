@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OpenSmsManager.Core {
+namespace OpenSmsManager.Core 
+{
     public abstract class SmsMessage { }
 
     public class SmsSubmitMessage : SmsMessage 
@@ -375,7 +376,6 @@ namespace OpenSmsManager.Core {
 					headerLength++;
 					Text = Text.Substring((int)Math.Ceiling(headerLength/7.0)*7);
 				}
-
 			} 
 			else 
 			{
