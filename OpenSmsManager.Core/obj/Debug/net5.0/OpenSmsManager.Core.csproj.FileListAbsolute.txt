@@ -24,6 +24,5 @@ C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.Resources.resources
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.csproj.GenerateResource.cache
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\bin\Debug\net5.0\ES\OpenSmsManager.Core.resources.dll
-C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.csproj.AssemblyReference.cache
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.Resources.ES.resources
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\ES\OpenSmsManager.Core.resources.dll

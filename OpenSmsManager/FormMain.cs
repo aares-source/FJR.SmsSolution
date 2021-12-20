@@ -15,18 +15,25 @@ namespace OpenSmsManager
     {
         public FormMain()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
-            // add serial ports
-            for (int x = 1; x < 9; x++)
-            {
-                serialPortList.Items.Add("COM" + x);
-            }
+            toolStripProgressBar1.Value = 10;
 
-            // add more serial ports
+            // Add serial ports
             serialPortList.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
 
-            // simple send example
+            toolStripProgressBar1.Value = 100;
+
+            if (serialPortList.Items.Count > 0)
+            {
+                ProgressShow($"{Resources.AvailableComPortsLoaded}");
+            }
+            else
+            {
+                ProgressShow($"{Resources.AvailableComPortsLoaded}");
+            }
+
+            // Simple send example
             /*
             try {
                 ProgressShow("Opening Phone...");
@@ -72,13 +79,15 @@ namespace OpenSmsManager
                     }
                     catch (Exception ex)
                     {
-                        ProgressShow($"{Resources.FailedToListMessages}: {ex.ToString()}");
+                        ProgressShow($"{Resources.FailedToListMessages}");
+                        MessageBox.Show(ex.ToString(), Resources.FailedToListMessages);
                     }
                 }
             }
             catch (Exception ex)
             {                
-                ProgressShow($"{Resources.FailedToConnectToDevice}: {ex.ToString()}");
+                ProgressShow($"{Resources.FailedToOpenConnectionToDevice}");
+                MessageBox.Show(ex.ToString(), Resources.FailedToOpenConnectionToDevice);
             }
         }
 
@@ -105,7 +114,7 @@ namespace OpenSmsManager
             }
             catch (Exception ex)
             {
-                ProgressShow($"{Resources.FailedToConnectToDevice}: {ex.ToString()}");
+                ProgressShow($"{Resources.FailedToOpenConnectionToDevice}: {ex.ToString()}");
             }
         }
 
@@ -124,6 +133,7 @@ namespace OpenSmsManager
             if (messageList.SelectedItems.Count > 0)
             {
                 SmsDeliverMessage message = messageList.SelectedItems[0].Tag as SmsDeliverMessage;
+
                 try
                 {
                     ProgressShow(Resources.OpeningComToConnectToDevice);
@@ -146,11 +156,13 @@ namespace OpenSmsManager
 
         private void ProgressShow(string message)
         {
+            toolStripStatusLabel1.Text = message; 
+            /*
             Invoke((Action<string>)delegate (string s)
             {
-                ProgressInfoLabel.Text = s;
-
+                toolStripStatusLabel1.Text = s;
             }, message); 
+            */
         }
     }
 }

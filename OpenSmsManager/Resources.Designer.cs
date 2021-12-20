@@ -61,11 +61,11 @@ namespace OpenSmsManager {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Failed to connect to device.
+        ///   Busca una cadena traducida similar a Available COM ports loaded.
         /// </summary>
-        internal static string FailedToConnectToDevice {
+        internal static string AvailableComPortsLoaded {
             get {
-                return ResourceManager.GetString("FailedToConnectToDevice", resourceCulture);
+                return ResourceManager.GetString("AvailableComPortsLoaded", resourceCulture);
             }
         }
         
@@ -102,6 +102,15 @@ namespace OpenSmsManager {
         internal static string MessageSent {
             get {
                 return ResourceManager.GetString("MessageSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No available COM ports.
+        /// </summary>
+        internal static string NoAvailableComPorts {
+            get {
+                return ResourceManager.GetString("NoAvailableComPorts", resourceCulture);
             }
         }
         

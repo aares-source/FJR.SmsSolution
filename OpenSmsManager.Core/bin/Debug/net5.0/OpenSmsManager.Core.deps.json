@@ -12,6 +12,11 @@
         },
         "runtime": {
           "OpenSmsManager.Core.dll": {}
+        },
+        "resources": {
+          "ES/OpenSmsManager.Core.resources.dll": {
+            "locale": "ES"
+          }
         }
       },
       "Microsoft.NETCore.Platforms/5.0.0": {},
