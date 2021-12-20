@@ -14,7 +14,6 @@ C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\bin\Debug
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\bin\Debug\net5.0\OpenSmsManager.Core.dll
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\bin\Debug\net5.0\ref\OpenSmsManager.Core.dll
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\bin\Debug\net5.0\OpenSmsManager.Core.pdb
-C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.csproj.AssemblyReference.cache
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.AssemblyInfoInputs.cache
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.AssemblyInfo.cs
@@ -22,3 +21,9 @@ C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.dll
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\ref\OpenSmsManager.Core.dll
 C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.pdb
+C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.Resources.resources
+C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.csproj.GenerateResource.cache
+C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\bin\Debug\net5.0\ES\OpenSmsManager.Core.resources.dll
+C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.csproj.AssemblyReference.cache
+C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.Resources.ES.resources
+C:\Users\aresalva\Documents\GitHub\FJR.SmsSolution\OpenSmsManager.Core\obj\Debug\net5.0\ES\OpenSmsManager.Core.resources.dll

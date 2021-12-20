@@ -16,7 +16,7 @@ namespace OpenSmsManager.Core
 		{
 			StringBuilder result = new StringBuilder();
 
-			// length of smsc information (use the one in the phone)
+			// Length of smsc information (use the one in the phone)
 			result.Append("00");
 
 			// TP-MTI: first octet (set SMS-SUBMIT & TP-VPS=Relative)
@@ -104,17 +104,17 @@ namespace OpenSmsManager.Core
 			int pduOffset = 0;
 
             #region Short Message Service Center
-            // length of the smsc information
+            // Length of the smsc information
 			byte smscLength = byte.Parse(pdu.Substring(pduOffset,2), System.Globalization.NumberStyles.HexNumber);
 			pduOffset += 2;
 
 			if (smscLength > 0) 
 			{
-				// type of address
+				// Type of address
                 Convert.FromTypeOfAddress(byte.Parse(pdu.Substring(pduOffset, 2), System.Globalization.NumberStyles.HexNumber), out SMSCAddress.TypeOfAddress, out SMSCAddress.NumberingPlan);
 				pduOffset += 2;
 
-				// message center address
+				// Message center address
                 SMSCAddress.PhoneNumber += Convert.FromDecimalSemi(pdu.Substring(pduOffset, smscLength * 2 - 2));
 				pduOffset += smscLength*2-2;
             }
@@ -122,11 +122,11 @@ namespace OpenSmsManager.Core
             #endregion
 
             #region First octet (message type & header info bit)
-            // first octet (TP-MTI must be set to SMS-DELIVER)
+            // First octet (TP-MTI must be set to SMS-DELIVER)
 			byte firstOctet = byte.Parse(pdu.Substring(pduOffset,2), System.Globalization.NumberStyles.HexNumber);
             if (Convert.TestBit(firstOctet, 1) || Convert.TestBit(firstOctet, 0)) 
 			{
-				throw new DecodeException("Only SMS-DELIVER messages can be decoded!");
+				throw new DecodeException(Resources.OnlySmsDeliverMessagesCanBeDecodedMsg);
 			}
 
 			// TP-UDH
@@ -140,15 +140,15 @@ namespace OpenSmsManager.Core
             #endregion
 
             #region Sender Address
-            // length of the sender address
+            // Length of the sender address
 			byte senderLength = byte.Parse(pdu.Substring(pduOffset,2), System.Globalization.NumberStyles.HexNumber);
 			pduOffset += 2;
 
-			// type of address
+			// Type of address
             Convert.FromTypeOfAddress(byte.Parse(pdu.Substring(pduOffset, 2), System.Globalization.NumberStyles.HexNumber), out SenderAddress.TypeOfAddress, out SenderAddress.NumberingPlan);
 			pduOffset += 2;
 
-			// sender address
+			// Sender address
             if (SenderAddress.TypeOfAddress == TypeOfAddress.Alphanumeric) 
 			{
                 SenderAddress.PhoneNumber += Convert.FromSeptets(pdu.Substring(pduOffset, senderLength + (senderLength % 2 == 1 ? 1 : 0)));
@@ -174,31 +174,31 @@ namespace OpenSmsManager.Core
 			pduOffset += 2;
             if (!Convert.TestBit(messageEncoding, 7) && !Convert.TestBit(messageEncoding, 6))
 			{
-				// general data
+				// General data
                 messageCompressed = (Convert.TestBit(messageEncoding, 5));
                 if (Convert.TestBit(messageEncoding, 4)) 
 				{
                     if (!Convert.TestBit(messageEncoding, 1) && !Convert.TestBit(messageEncoding, 0)) 
 					{
-						messageClass = 0;		// class 0
+						messageClass = 0;		// Class 0
                     } 
 					else if (!Convert.TestBit(messageEncoding, 1) && Convert.TestBit(messageEncoding, 0)) 
 					{
-						messageClass = 1;		// class 1 (me specific)
+						messageClass = 1;		// Class 1 (me specific)
                     } 
 					else if (Convert.TestBit(messageEncoding, 1) && !Convert.TestBit(messageEncoding, 0)) 
 					{
-						messageClass = 2;		// class 2 (sim specific)
+						messageClass = 2;		// Class 2 (sim specific)
                     } 
 					else if (Convert.TestBit(messageEncoding, 1) && Convert.TestBit(messageEncoding, 0)) 
 					{
-						messageClass = 3;		// class 3 (te specific)
+						messageClass = 3;		// Class 3 (te specific)
 					}
 				}
 
                 if (!Convert.TestBit(messageEncoding, 3) && !Convert.TestBit(messageEncoding, 2)) 
 				{
-					messageAlphabet = 0;		// default alphabet
+					messageAlphabet = 0;		// Default alphabet
                 } 
 				else if (!Convert.TestBit(messageEncoding, 3) && Convert.TestBit(messageEncoding, 2)) 
 				{
@@ -210,16 +210,17 @@ namespace OpenSmsManager.Core
                 } 
 				else if (Convert.TestBit(messageEncoding, 3) && Convert.TestBit(messageEncoding, 2)) 
 				{
-					messageAlphabet = 0;		// reserved (default alphabet)
+					messageAlphabet = 0;		// Reserved (default alphabet)
 				}
             } 
 			else if (Convert.TestBit(messageEncoding, 7) && Convert.TestBit(messageEncoding, 6)) 
 			{
-                if (Convert.TestBit(messageEncoding, 5) && Convert.TestBit(messageEncoding, 4)) 
-				{					// data coding/message class
+				// Data coding/message class
+				if (Convert.TestBit(messageEncoding, 5) && Convert.TestBit(messageEncoding, 4)) 
+				{					
                     if (!Convert.TestBit(messageEncoding, 2)) 
 					{
-						messageAlphabet = 0;	// default alphabet
+						messageAlphabet = 0;	// Default alphabet
 					} 
 					else 
 					{
@@ -244,7 +245,8 @@ namespace OpenSmsManager.Core
 					}
 				} 
 				else 
-				{																// message waiting indication group
+				{	
+					// Message waiting indication group
                     if (Convert.TestBit(messageEncoding, 5) && !Convert.TestBit(messageEncoding, 4)) 
 					{
 						messageAlphabet = 2;
@@ -254,6 +256,7 @@ namespace OpenSmsManager.Core
             #endregion
 
             #region Timestamp (adjusted to computers local time)
+
             // TP-SCTS: service center time stamp
             string messageTimestamp = Convert.FromDecimalSemi(pdu.Substring(pduOffset, 14));
 			pduOffset += 14;			
@@ -270,28 +273,31 @@ namespace OpenSmsManager.Core
 
 			DateReceived = new DateTime(year, byte.Parse(messageTimestamp.Substring(2,2)), byte.Parse(messageTimestamp.Substring(4,2)), byte.Parse(messageTimestamp.Substring(6,2)), byte.Parse(messageTimestamp.Substring(8,2)), byte.Parse(messageTimestamp.Substring(10,2)));
 
-			// calculate offset adjustments we need to do to get localtime
-			int computerGmtOffset = (int)TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).TotalMinutes;	// local GMT offset
+			// Calculate offset adjustments we need to do to get localtime
+			// int computerGmtOffset = (int)TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).TotalMinutes;  // Local GMT offset -- OBSOLETE .net 3.5 original code
+			int computerGmtOffset = (int) TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).TotalMinutes; // Local UTC offset
+
 
 			string messageGmtOffset = messageTimestamp.Substring(12,2);
 			int messageGmtOffsetNum = 0;
 			
-			byte b = byte.Parse(""+messageGmtOffset[1]); // already swapped
+			byte b = byte.Parse(""+messageGmtOffset[1]); // Already swapped
 			if ((b & 0xFF) == 0xFF) 
 			{
-				// negative
+				// Negative
 				b &= 0xFE;
 				messageGmtOffset = "" + messageGmtOffset[0] + (char)b;
 				messageGmtOffsetNum = -byte.Parse(messageGmtOffset);
 			} 
 			else 
 			{
-				// positive
+				// Positive
 				messageGmtOffsetNum = byte.Parse(messageGmtOffset);
 			}
 
-			messageGmtOffsetNum *= 15;																		// message GMT offset
-
+			// Message GMT offset
+			messageGmtOffsetNum *= 15;			
+			
 			this.DateReceived = this.DateReceived.AddMinutes(computerGmtOffset-messageGmtOffsetNum);
             #endregion
 
@@ -319,9 +325,10 @@ namespace OpenSmsManager.Core
 				headerLength = byte.Parse(messageTPUD.Substring(pduOffset, 2), System.Globalization.NumberStyles.HexNumber);
 				pduOffset += 2;
 
-				// for each information element
+				// For each information element
 				int headerLengthRemaining = headerLength*2;
 				int headerOffset = pduOffset;
+
 				while (headerLengthRemaining > 0) 
 				{
 					byte ieElement = byte.Parse(messageTPUD.Substring(headerOffset, 2), System.Globalization.NumberStyles.HexNumber);
@@ -334,7 +341,7 @@ namespace OpenSmsManager.Core
 
 					if ((ieElement == 0) && (ieLength == 3)) 
 					{
-						// concatenated short message
+						// Concatenated short message
 						HasMoreParts = true;
 
 						PartGroupId = byte.Parse(messageTPUD.Substring(headerOffset, 2), System.Globalization.NumberStyles.HexNumber);
@@ -348,7 +355,9 @@ namespace OpenSmsManager.Core
 						PartIndex = byte.Parse(messageTPUD.Substring(headerOffset, 2), System.Globalization.NumberStyles.HexNumber);
 						headerOffset += 2;
 						headerLengthRemaining -= 2;
-					} else {
+					} 
+					else 
+					{
 						headerOffset += ieLength*2;
 						headerLengthRemaining -= ieLength*2;
 					}
@@ -360,17 +369,18 @@ namespace OpenSmsManager.Core
             #endregion
 
             #region Message decoding
+
             if (messageAlphabet == 0) 
 			{
                 Text = Convert.FromSeptets(messageTPUD);
 
-                // cut sms
+                // Cut sms
                 if (Text.Length > messageLength) 
 				{
                     Text = Text.Substring(0, messageLength);
                 }				
 
-                // remove header
+                // Remove header
                 if (hasMessageHeader) 
 				{
 					headerLength++;
@@ -381,16 +391,17 @@ namespace OpenSmsManager.Core
 			{
                 Text = Convert.FromOctets(messageTPUD.Substring(pduOffset, messageTPUD.Length - pduOffset));
             }
+
             #endregion
         }
 
 		public override string ToString() 
 		{
-			return string.Concat("SmsMessage:",
-                "\nShort Message Service Center: ", this.SMSCAddress.PhoneNumber, 
-                "\nDate: ", this.DateReceived,
-                "\nSender: ", this.SenderAddress,
-                "\nText: ", this.Text);
+			return string.Concat($"{Resources.SmsMessage}:",
+				$"{Environment.NewLine}{Resources.ShortMessageServiceCenter}: {this.SMSCAddress.PhoneNumber}",
+                $"{Environment.NewLine}{Resources.Date}: {this.DateReceived}",
+                $"{Environment.NewLine}{Resources.Sender}: {this.SenderAddress}",
+                $"{Environment.NewLine}{Resources.Text}: {this.Text}");
 		}
 	}
 }

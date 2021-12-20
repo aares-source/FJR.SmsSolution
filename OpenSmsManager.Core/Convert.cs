@@ -11,6 +11,7 @@ namespace OpenSmsManager.Core
         {
             typeOfAddress = TypeOfAddress.Unknown;
             numberingPlan = NumberingPlan.Unknown;
+
             if ((octet & 128) == 128)
             {
                 if (!TestBit(octet, 6) && !TestBit(octet, 5) && !TestBit(octet, 4))
@@ -97,7 +98,8 @@ namespace OpenSmsManager.Core
 
         internal static string FromDecimalSemi(string data)
         {
-            string result = "";
+            string result = string.Empty;
+
             for (int x = 0; x < data.Length; x += 2)
             {
                 if (data[x] == 'F')
@@ -115,7 +117,8 @@ namespace OpenSmsManager.Core
 
         internal static string ToDecimalSemi(string data)
         {
-            string result = "";
+            string result = string.Empty;
+
             if (data.Length > 0)
             {
                 if (data.Length % 2 == 1)
@@ -138,14 +141,14 @@ namespace OpenSmsManager.Core
             byte temp;
             bool extendedChar = false;
 
-            // get bytes from string
+            // Get bytes from string
             byte[] dataBytes = new byte[data.Length / 2];
             for (int x = 0, y = 0; x < data.Length; x += 2, y++)
             {
                 dataBytes[y] = byte.Parse(data.Substring(x, 2), System.Globalization.NumberStyles.HexNumber);
             }
 
-            // convert septets to chars
+            // Convert septets to chars
             for (int x = 0; x < dataBytes.Length; x += 7)
             {
                 if (x + 0 < dataBytes.Length)

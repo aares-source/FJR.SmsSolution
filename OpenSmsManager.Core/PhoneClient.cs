@@ -4,22 +4,23 @@ using System.IO.Ports;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace OpenSmsManager.Core {
-    public class PhoneClient : IDisposable 
+namespace OpenSmsManager.Core
+{
+    public class PhoneClient : IDisposable
     {
         private Stream _connectedStream;
         private bool _disposed;
 
-        public PhoneClient(Stream connectedStream) 
+        public PhoneClient(Stream connectedStream)
         {
             _connectedStream = connectedStream;
 
             InitPhone();
         }
 
-        public PhoneClient(string serialPortName) 
+        public PhoneClient(string serialPortName)
         {
-            try 
+            try
             {
                 SerialPort serialPort = new SerialPort(serialPortName, 19600, Parity.Even, 8, StopBits.One);
                 serialPort.Handshake = Handshake.RequestToSendXOnXOff;
@@ -27,77 +28,92 @@ namespace OpenSmsManager.Core {
                 serialPort.ReadTimeout = serialPort.WriteTimeout = 10000;
                 serialPort.Open();
 
-                if (!serialPort.IsOpen) 
+                if (!serialPort.IsOpen)
                 {
-                    throw new Exception();
+                    throw new SerialPortAllReadyOpenException(Resources.SerialPortOpenMsg);
                 }
 
                 _connectedStream = serialPort.BaseStream;
 
                 InitPhone();
-            } 
-            catch (Exception) 
+            }
+            catch (Exception)
             {
-                throw new ConnectionFailedException("Failed to start communications with phone");
+                throw new ConnectionFailedException(Resources.FailedStartCommWithPhoneMsg);
             }
         }
 
-        public List<SmsDeliverMessage> List(ListType type) 
+        /// <summary>
+        /// Retrieves a list of all SMS stored into device.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns>List of SMS messages</returns>
+        public List<SmsDeliverMessage> List(ListType type)
         {
             List<SmsDeliverMessage> result = new List<SmsDeliverMessage>();
 
-            // set format to pdu
-            Debug.WriteLine("Asking for PDU format");
+            // Set format to pdu
+            Debug.WriteLine("Request for PDU format");
+
             WriteCommandExpectResponse("AT+CMGF=0", "\rOK\r");
 
-            // list storages
-            Debug.WriteLine("Asking for storage enumeration");
+            // List storages
+            Debug.WriteLine("Request for storage enumeration");
+
             string response = WriteCommandExpectResponse("AT+CPMS?", "\rOK\r");
             string[] data = response.Split('\r');
 
             if (data[1].Substring(0, 7).ToUpper() != "+CPMS: ")
             {
-                throw new UnexpectedResponseException("Phone message storages could not be enumerated");
+                throw new UnexpectedResponseException(Resources.DeviceMessageStoragesNotEnumeratedMsg);
             }
 
-            // walk storages
+            // Walk through storages
             string[] storages = data[1].Substring(7).Split(',');
-            for (int x = 0; x < storages.Length; x += 3) 
+            for (int x = 0; x < storages.Length; x += 3)
             {
-                Debug.WriteLine("Memory " + storages[x] + ": " + storages[x + 1] + " used, " + storages[x + 2] + " total");
+                Debug.WriteLine($"Memory {storages[x]}: {storages[x + 1]} used, {storages[x + 2]} total");
 
-                // select storage
+                // Select storage
                 WriteCommandExpectResponse("AT+CPMS=" + storages[x], "\rOK\r");
 
-                // list messages in storage
+                // List messages in storage
                 response = WriteCommandExpectResponse("AT+CMGL=" + (int)type, "\rOK\r");
                 data = response.Split('\r');
-                for (int y = 2; y < data.Length - 2; y = y + 2) 
+                for (int y = 2; y < data.Length - 2; y = y + 2)
                 {
-                    try 
+                    try
                     {
                         result.Add(new SmsDeliverMessage(data[y], new MessageLocation(storages[x], int.Parse(data[y - 1].Substring(6, data[y - 1].IndexOf(",", 6) - 6)))));
-                    } catch (Exception ex) {
-                        Debug.WriteLine("Failed to read message: " + ex.Message + ", " + ex.StackTrace);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"Failed to read message: {ex.Message}, {ex.StackTrace}");
                     }
                 }
             }
 
             MergeMultipartMessages(result);
+
             return result;
         }
 
-        public bool Send(SmsSubmitMessage message) 
+        /// <summary>
+        /// Sends SMS message
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public bool Send(SmsSubmitMessage message)
         {
-            // set format to pdu
-            Debug.WriteLine("Asking for PDU format");
+            // Set format to pdu
+            Debug.WriteLine("Request for PDU format");
             WriteCommandExpectResponse("AT+CMGF=0", "\rOK\r");
 
-            // select message service
+            // Select message service
             Debug.WriteLine("Selecting message service");
             WriteCommandExpectResponse("AT+CSMS=0", "\rOK\r");
 
-            // send message
+            // Send message
             Debug.WriteLine("Sending SMS");
             WriteCommandExpectResponse("AT+CMGS=" + ((message.Pdu.Length - 2) / 2), "\r> ");
             WriteCommandExpectResponse(message.Pdu + "\x1A", "\rOK\r");
@@ -105,62 +121,66 @@ namespace OpenSmsManager.Core {
             return true;
         }
 
-        public void Delete(SmsDeliverMessage message) 
+        public void Delete(SmsDeliverMessage message)
         {
-            for (int x = 0; x < message.MessageLocation.Count; x++) 
+            for (int x = 0; x < message.MessageLocation.Count; x++)
             {
-                // select storage
+                // Select storage
                 WriteCommandExpectResponse("AT+CPMS=" + message.MessageLocation[x].StorageName, "\rOK\r");
-            
-                // delete message
+
+                // Delete message
                 WriteCommandExpectResponse("AT+CMGD=" + message.MessageLocation[x].MessageIndex, "\rOK\r");
             }
         }
 
-        private void InitPhone() 
+        private void InitPhone()
         {
-            // say hi, and disable echoing if neccessary
+            // Say hi, and disable echoing if neccessary
             string response = WriteCommandExpectResponse("ATZ", "ATZ\r\rOK\r\0\rOK\r");
 
-            if (response == "ATZ\r\rOK\r") 
+            if (response == "ATZ\r\rOK\r")
             {
-                // disable echoing
-                Debug.WriteLine("Asking to disable echoing");
+                // Disable echoing
+                Debug.WriteLine("Request to disable echoing");
+
                 WriteCommandExpectResponse("ATE=0", "ATE=0\r\rOK\r\0\rOK\r");
+
                 Debug.WriteLine("Echoing disabled");
-            } 
-            else if (response == "\rOK\r") 
+            }
+            else if (response == "\rOK\r")
             {
                 Debug.WriteLine("Echoing seems to be off");
-            } 
-            else 
+            }
+            else
             {
-                throw new UnexpectedResponseException("Unexpected response after sending AT");
+                throw new UnexpectedResponseException(Resources.UnexpectedResponseAfterSendingAtCommandMsg);
             }
 
-            // turn on DCD
+            // Turn on DCD
             Debug.WriteLine("Turning on DCD");
+
             WriteCommandExpectResponse("AT&C0", "\rOK\r");
 
-            // ask for name
+            // Request name
             response = WriteCommandExpectResponse("ATI", "\rOK\r");
 
             string[] arrID = response.Split('\r');
+
             Debug.WriteLine("Nice to meet you \"" + arrID[1] + "\"");
         }
 
-        private void MergeMultipartMessages(List<SmsDeliverMessage> messages) 
+        private void MergeMultipartMessages(List<SmsDeliverMessage> messages)
         {
-            for (int x = 0; x < messages.Count; x++) 
+            for (int x = 0; x < messages.Count; x++)
             {
-                if ((messages[x].HasMoreParts) && (messages[x].PartIndex == 1)) 
+                if ((messages[x].HasMoreParts) && (messages[x].PartIndex == 1))
                 {
-                    for (int y = 2; y <= messages[x].PartCount; y++) 
+                    for (int y = 2; y <= messages[x].PartCount; y++)
                     {
-                        for (int z = 0; z < messages.Count; z++) 
+                        for (int z = 0; z < messages.Count; z++)
                         {
                             if ((messages[z].HasMoreParts) && (messages[z].PartIndex == y) && (messages[z].PartGroupId == messages[x].PartGroupId) &&
-                                (messages[z].SenderAddress.PhoneNumber == messages[x].SenderAddress.PhoneNumber) && Math.Abs(((TimeSpan)(messages[z].DateReceived - messages[x].DateReceived)).TotalHours) < 24) 
+                                (messages[z].SenderAddress.PhoneNumber == messages[x].SenderAddress.PhoneNumber) && Math.Abs(((TimeSpan)(messages[z].DateReceived - messages[x].DateReceived)).TotalHours) < 24)
                             {
                                 messages[x].Text += messages[z].Text;
                                 messages[x].MessageLocation.AddRange(messages[z].MessageLocation);
@@ -171,7 +191,8 @@ namespace OpenSmsManager.Core {
                                     x--;
                                 }
 
-                                if (y == messages[x].PartCount) {
+                                if (y == messages[x].PartCount)
+                                {
                                     messages[x].HasMoreParts = false;
                                 }
 
@@ -183,63 +204,75 @@ namespace OpenSmsManager.Core {
             }
         }
 
-        private string WriteCommandExpectResponse(string command, string response) 
+        private string WriteCommandExpectResponse(string command, string response)
         {
             return WriteCommandExpectResponse(command, response.Split('\0'));
         }
 
-        private string WriteCommandExpectResponse(string command, string[] response) 
+        private string WriteCommandExpectResponse(string command, string[] response)
         {
-            // write command
+            // Write command
             Debug.WriteLine("C: " + command);
+
             byte[] writeBuffer = System.Text.Encoding.ASCII.GetBytes(command + "\r");
             _connectedStream.Write(writeBuffer, 0, writeBuffer.Length);
 
-            // read response
-            string result = "";
+            // Read response
+            string result = string.Empty;
             byte[] readBuffer = new byte[512];
             int readLength;
 
-            // read rows
-            while (true) 
+            // Read rows
+            while (true)
             {
                 readLength = _connectedStream.Read(readBuffer, 0, 512);
-                if (readLength == 0) {
-                    throw new UnexpectedResponseException("No response after sending " + command);
+                if (readLength == 0)
+                {
+                    throw new UnexpectedResponseException(string.Format(Resources.NoResponseAfterSendingCommandMsg, command));
                 }
 
                 result = String.Concat(result, System.Text.Encoding.ASCII.GetString(readBuffer, 0, readLength).Replace("\n", ""));
-                for (int x = 0; x < response.Length; x++) {
-                    if (result.EndsWith(response[x])) {
+
+                for (int x = 0; x < response.Length; x++)
+                {
+                    if (result.EndsWith(response[x]))
+                    {
                         Debug.WriteLine("S: " + result.Replace("\r", @"\r"));
                         return result;
                     }
                 }
             }
 
-            throw new UnexpectedResponseException("Invalid response after sending " + command + ", expected " + response + " but got " + result);
+            throw new UnexpectedResponseException(string.Format(Resources.InvalidResponseAfterSendingCommand, command, response, result));
         }
 
         #region IDisposable Members
         // if .Dispose() is called, the destructor will be supressed
-        public void Dispose() {
+        public void Dispose()
+        {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         // if the destructor run, .Dispose() has never been called
-        ~PhoneClient() {
+        ~PhoneClient()
+        {
             Dispose(false);
         }
 
-        private void Dispose(bool disposing) {
-            if (!_disposed) {
-                if (disposing) {
+        private void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
                     _connectedStream.Dispose();
                 }
+
                 _disposed = true;
             }
         }
+
         #endregion
     }
 }

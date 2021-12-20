@@ -52,15 +52,495 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="progressTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="serialPortList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="serialPortList.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="serialPortList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>446, 23</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="serialPortList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="serialPortList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 21</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="serialPortList.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;serialPortList.Name" xml:space="preserve">
+    <value>serialPortList</value>
+  </data>
+  <data name="&gt;&gt;serialPortList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;serialPortList.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;serialPortList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 27</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>363, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Please select the COM port that your device is currently connected to:</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 14</value>
+  </data>
+  <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>598, 67</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Phone Connection Settings</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="existingMessageDelete.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="existingMessageDelete.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="existingMessageDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>497, 178</value>
+  </data>
+  <data name="existingMessageDelete.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="existingMessageDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 27</value>
+  </data>
+  <data name="existingMessageDelete.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="existingMessageDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="&gt;&gt;existingMessageDelete.Name" xml:space="preserve">
+    <value>existingMessageDelete</value>
+  </data>
+  <data name="&gt;&gt;existingMessageDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;existingMessageDelete.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;existingMessageDelete.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="messageList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="Received.Text" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Received.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="From.Text" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="From.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="Message.Text" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Message.Width" type="System.Int32, mscorlib">
+    <value>240</value>
+  </data>
+  <data name="messageList.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="messageList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 23</value>
+  </data>
+  <data name="messageList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="messageList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 148</value>
+  </data>
+  <data name="messageList.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;messageList.Name" xml:space="preserve">
+    <value>messageList</value>
+  </data>
+  <data name="&gt;&gt;messageList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;messageList.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;messageList.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 89</value>
+  </data>
+  <data name="groupBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="groupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>598, 213</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Phone SMS Messages</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 216</value>
+  </data>
+  <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>574, 46</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Please note: If a message is longer than 160 characters it will be splited and sent as multiple messages, and combined by the addresse.</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="newMessageSend.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="newMessageSend.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="newMessageSend.Location" type="System.Drawing.Point, System.Drawing">
+    <value>494, 186</value>
+  </data>
+  <data name="newMessageSend.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="newMessageSend.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 27</value>
+  </data>
+  <data name="newMessageSend.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="newMessageSend.Text" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="&gt;&gt;newMessageSend.Name" xml:space="preserve">
+    <value>newMessageSend</value>
+  </data>
+  <data name="&gt;&gt;newMessageSend.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newMessageSend.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;newMessageSend.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="newMessageText.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="newMessageText.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="newMessageText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 66</value>
+  </data>
+  <data name="newMessageText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="newMessageText.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="newMessageText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>570, 104</value>
+  </data>
+  <data name="newMessageText.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;newMessageText.Name" xml:space="preserve">
+    <value>newMessageText</value>
+  </data>
+  <data name="&gt;&gt;newMessageText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newMessageText.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;newMessageText.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 46</value>
+  </data>
+  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="newMessageTo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="newMessageTo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="newMessageTo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>329, 20</value>
+  </data>
+  <data name="newMessageTo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="newMessageTo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 22</value>
+  </data>
+  <data name="newMessageTo.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;newMessageTo.Name" xml:space="preserve">
+    <value>newMessageTo</value>
+  </data>
+  <data name="&gt;&gt;newMessageTo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newMessageTo.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;newMessageTo.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 23</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 13</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Addresse's phone number (format: 46712345678):</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="groupBox3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 309</value>
+  </data>
+  <data name="groupBox3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="groupBox3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>597, 275</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Send SMS</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ProgressInfoLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ProgressInfoLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 587</value>
+  </data>
+  <data name="ProgressInfoLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 15</value>
+  </data>
+  <data name="ProgressInfoLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfoLabel.Name" xml:space="preserve">
+    <value>ProgressInfoLabel</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfoLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfoLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfoLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>626, 624</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAEBAAAAEAIABoBAAAlgAAABgYAAABACAAiAkAAP4EAAAgIAAAAQAgAKgQAACGDgAAMDAAAAEA
@@ -5212,5 +5692,41 @@
         IiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIqLi+P8VBIhK7+HohQAAAABJRU5E
         rkJggg==
 </value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>633, 663</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Open SMS Manager</value>
+  </data>
+  <data name="&gt;&gt;Received.Name" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="&gt;&gt;Received.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;From.Name" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="&gt;&gt;From.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Message.Name" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="&gt;&gt;Message.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormMain</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

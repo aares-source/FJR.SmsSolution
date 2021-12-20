@@ -50,11 +50,12 @@ namespace OpenSmsManager
 
             try
             {
-                ProgressShow("Opening Phone...");
+                ProgressShow(Resources.OpeningDevice);
 
                 using (PhoneClient phoneClient = new PhoneClient(serialPortList.Text))
                 {
-                    ProgressShow("Listing messages...");
+                    ProgressShow(Resources.ListingMessages);
+
                     try
                     {
                         List<SmsDeliverMessage> messages = phoneClient.List(ListType.All);
@@ -71,13 +72,13 @@ namespace OpenSmsManager
                     }
                     catch (Exception ex)
                     {
-                        ProgressShow("Failed to list messages: " + ex.ToString());
+                        ProgressShow($"{Resources.FailedToListMessages}: {ex.ToString()}");
                     }
                 }
             }
             catch (Exception ex)
-            {
-                ProgressShow("Failed to open phone: " + ex.Message);
+            {                
+                ProgressShow($"{Resources.FailedToConnectToDevice}: {ex.ToString()}");
             }
         }
 
@@ -85,24 +86,26 @@ namespace OpenSmsManager
         {
             try
             {
-                ProgressShow("Opening Phone...");
+                ProgressShow(Resources.OpeningComToConnectToDevice);
+
                 using (PhoneClient phoneClient = new PhoneClient(serialPortList.Text))
                 {
-                    ProgressShow("Sending message...");
+                    ProgressShow(Resources.SendingMessage);
+
                     try
                     {
                         phoneClient.Send(new SmsSubmitMessage(new Address(newMessageTo.Text, TypeOfAddress.International, NumberingPlan.ISDNOrPhone), newMessageText.Text));
-                        ProgressShow("Message Sent!");
+                        ProgressShow(Resources.MessageSent);
                     }
                     catch (Exception ex)
                     {
-                        ProgressShow("Failed to list messages: " + ex.ToString());
+                        ProgressShow($"{Resources.FailedToListMessages}: {ex.ToString()}");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ProgressShow("Failed to open phone: " + ex.Message);
+                ProgressShow($"{Resources.FailedToConnectToDevice}: {ex.ToString()}");
             }
         }
 
@@ -123,7 +126,8 @@ namespace OpenSmsManager
                 SmsDeliverMessage message = messageList.SelectedItems[0].Tag as SmsDeliverMessage;
                 try
                 {
-                    ProgressShow("Opening Phone...");
+                    ProgressShow(Resources.OpeningComToConnectToDevice);
+
                     using (PhoneClient phoneClient = new PhoneClient(serialPortList.Text))
                     {
                         phoneClient.Delete(message);
@@ -132,7 +136,7 @@ namespace OpenSmsManager
                 }
                 catch (Exception ex)
                 {
-                    ProgressShow("Failed to open phone: " + ex.Message);
+                    ProgressShow($"{Resources.FailedToOpenConnectionToDevice} " + ex.Message);
                 }
 
                 // reindex messages
@@ -142,17 +146,11 @@ namespace OpenSmsManager
 
         private void ProgressShow(string message)
         {
-            progressText.Text = message;
-            progress.Visible = true;
-            progressText.Refresh();
-            progressTimer.Enabled = false;
-            progressTimer.Enabled = true;
-        }
+            Invoke((Action<string>)delegate (string s)
+            {
+                ProgressInfoLabel.Text = s;
 
-        private void ProgressTimer_Tick(object sender, EventArgs e)
-        {
-            progress.Visible = false;
-            progressTimer.Enabled = false;
+            }, message); 
         }
     }
 }

@@ -2,21 +2,6 @@ using System;
 
 namespace OpenSmsManager.Core
 {
-    public class UnexpectedResponseException : Exception
-    {
-        internal UnexpectedResponseException(string message) : base(message) { }
-    }
-
-    public class DecodeException : Exception
-    {
-        internal DecodeException(string message) : base(message) { }
-    }
-
-    public class ConnectionFailedException : Exception
-    {
-        internal ConnectionFailedException(string message) : base(message) { }
-    }
-
     public enum TypeOfAddress
     {
         Unknown = 0,
