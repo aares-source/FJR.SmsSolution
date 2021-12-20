@@ -1,0 +1,12 @@
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.AssemblyInfoInputs.cache
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.AssemblyInfo.cs
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.csproj.CoreCompileInputs.cache
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\bin\Debug\net5.0\OpenSmsManager.Core.deps.json
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\bin\Debug\net5.0\OpenSmsManager.Core.dll
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\bin\Debug\net5.0\ref\OpenSmsManager.Core.dll
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\bin\Debug\net5.0\OpenSmsManager.Core.pdb
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.dll
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\obj\Debug\net5.0\ref\OpenSmsManager.Core.dll
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.pdb
+C:\Users\aresalva\source\repos\OpenSmsManager\OpenSmsManager.Core\obj\Debug\net5.0\OpenSmsManager.Core.csproj.AssemblyReference.cache
